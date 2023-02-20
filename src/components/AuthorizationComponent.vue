@@ -6,7 +6,6 @@
           <div class="header-logo__container">
             <div class="header-logo__logo ibg">
               <img alt="logo" src="../assets/logo.svg" />
-
             </div>
           </div>
         </div>
@@ -47,7 +46,6 @@
                 <div class="authorization__image">
                   <img src="../assets/main-image.svg" alt="men">
                 </div>
-
                 <div class="authorization__dots authorization__dots_1">
                   <img src="../assets/dots.svg" alt="dots">
                 </div>
@@ -61,7 +59,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script setup>
@@ -75,6 +72,7 @@ const emailFieldName = ref('authorization-email')
 const passwordFieldName = ref('authorization-password')
 const isEmailInvalided = ref(false)
 const isPasswordInvalided = ref(false)
+
 const getAuth = async () => {
   const response = await axios.post('https://api.corecruiter.org/api/user/auth', { email: email.value, password: password.value })
   if (response && response.data && response.data.access_token) {
@@ -82,6 +80,7 @@ const getAuth = async () => {
     localStorage.setItem('accessToken', token)
   }
 }
+
 const validateEmail = (value) => {
   if (!value) {
     isEmailInvalided.value = true
@@ -97,23 +96,17 @@ const validateEmail = (value) => {
 }
 
 const validatePassword = (value) => {
-  // if the field is empty
   if (!value) {
     isPasswordInvalided.value = true
     return 'This field is required'
   }
-  // if the field is not a valid email
-
   if (value.length < 8) {
     isPasswordInvalided.value = true
     return 'This field is 8 symbols min'
   }
-  // All is good
   isPasswordInvalided.value = false
-
   return true
 }
-
 </script>
 
 <style></style>
